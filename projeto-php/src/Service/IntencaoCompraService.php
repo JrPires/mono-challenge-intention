@@ -11,7 +11,6 @@ class IntencaoCompraService
 {
     private AddressService $addressService;
     private ClientService $clientService;
-    private IntencaoCompraService $intencaoCompraService;
     private ProductService $productService;
     private RatingService $ratingService;
     private IntencaoCompraRepository $intencaoCompraRepository;
@@ -19,7 +18,6 @@ class IntencaoCompraService
     public function __construct(
         AddressService $addressService,
         ClientService $clientService,
-        IntencaoCompraService $intencaoCompraService,
         ProductService $productService,
         RatingService $ratingService,
         IntencaoCompraRepository $intencaoCompraRepository
@@ -27,7 +25,6 @@ class IntencaoCompraService
     {
         $this->addressService = $addressService;
         $this->clientService = $clientService;
-        $this->intencaoCompraService = $intencaoCompraService;
         $this->productService = $productService;
         $this->ratingService = $ratingService;
         $this->intencaoCompraRepository = $intencaoCompraRepository;

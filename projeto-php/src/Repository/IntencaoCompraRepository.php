@@ -29,15 +29,13 @@ class IntencaoCompraRepository extends ServiceEntityRepository
         ManagerRegistry $registry,
         ClientRepository $clientRepository,
         ProductRepository $productRepository,
-        RatingRepository $ratingRepository,
-        IntencaoCompraRepository $intencaoCompraRepository
+        RatingRepository $ratingRepository
     )
     {
         parent::__construct($registry, IntencaoCompra::class);
         $this->clientRepository = $clientRepository;
         $this->productRepository = $productRepository;
         $this->ratingRepository = $ratingRepository;
-        $this->intencaoCompraRepository = $intencaoCompraRepository;
     }
 
     public function save(IntencaoCompra $entity, bool $flush = false): void
@@ -96,7 +94,7 @@ class IntencaoCompraRepository extends ServiceEntityRepository
         $this->clientRepository->save($client, true);
         $this->productRepository->save($product, true);
         $this->ratingRepository->save($rating, true);
-        $this->intencaoCompraRepository->save($compra, true);
+        $this->save($compra, true);
     }
 
 //    public function findOneBySomeField($value): ?IntencaoCompra

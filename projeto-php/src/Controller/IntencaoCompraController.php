@@ -17,7 +17,6 @@ class IntencaoCompraController extends AbstractController
     #[Route('/intencao/compra', name: 'app_intencao_compra', methods: ['POST'])]
     public function intencaoCompra(Request $request, IntencaoCompraService $compraService): JsonResponse
     {
-
         $jsonContent = $request->getContent();
         $data = json_decode($jsonContent, true);
         try {

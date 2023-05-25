@@ -29,7 +29,7 @@ app.post('/api/compras/:id',
             jsonData.name = req.body.name;
             jsonData.address = req.body.address;
 
-            await axios.post('http://127.0.0.1:42121/intencao/compra', jsonData)
+            await axios.post('http://127.0.0.1:8000/intencao/compra', jsonData)
                 .then(response => {
                     console.log('Resposta Symfony', response.data);
                 })

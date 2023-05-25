@@ -1,0 +1,22 @@
+FROM node:14
+
+# Copia o código-fonte do projeto Node.js para o contêiner
+COPY . /api-produtos
+
+# Define o diretório de trabalho
+WORKDIR /api-produtos
+
+# Copie o arquivo package.json e package-lock.json para o diretório de trabalho
+COPY package*.json ./
+
+# Instala as dependências do Node.js
+RUN npm install
+
+# Copie o restante dos arquivos do projeto para o diretório de trabalho
+COPY . .
+
+# Porta em que o servidor Node.js estará ouvindo
+EXPOSE 3000
+
+# Comando para iniciar o servidor Node.js
+CMD ["npm", "run", "dev"]

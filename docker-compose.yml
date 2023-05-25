@@ -1,0 +1,32 @@
+version: '3'
+services:
+  php:
+    build:
+      context: ./projeto-php
+      dockerfile: Dockerfile.php
+
+  node:
+    build:
+      context: ./projeto-ts
+      dockerfile: Dockerfile.node
+
+  postgres:
+    image: postgres:15
+    ports:
+      - 5433:5433
+    volumes:
+      - ./path/to/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=intencao_compra
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    # Resto da configuração do serviço PostgreSQL
+
+  migrations:
+    build:
+      context: ./projeto-php
+      dockerfile: Dockerfile.php
+    command: php bin/console doctrine:migrations:migrate
+    depends_on:
+      - postgres
+

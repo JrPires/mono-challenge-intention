@@ -26,10 +26,11 @@ app.post('/api/compras/:id',
             const response =
                 await axios.get('https://fakestoreapi.com/products/' + idProduto);
             const jsonData = response.data;
+
             jsonData.name = req.body.name;
             jsonData.address = req.body.address;
 
-            await axios.post('http://127.0.0.1:8000/intencao/compra', jsonData)
+            await axios.post('http://nginx/intencao/compra', jsonData)
                 .then(response => {
                     console.log('Resposta Symfony', response.data);
                 })

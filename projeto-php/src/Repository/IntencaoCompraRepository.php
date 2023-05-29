@@ -70,7 +70,6 @@ class IntencaoCompraRepository extends ServiceEntityRepository
             ->addSelect('c')
             ->addSelect('a')
             ->addSelect('r')
-            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;

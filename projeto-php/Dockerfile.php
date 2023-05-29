@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1-fpm
 
 # Instala as dependências do sistema
 RUN apt-get update && \
@@ -9,14 +9,16 @@ RUN apt-get update && \
 # Instala extensões PHP
 RUN docker-php-ext-install pdo pdo_pgsql
 
+# Instala o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Copia o código-fonte do projeto PHP para o contêiner
 COPY . /var/www/html
 
 # Define o diretório de trabalho
 WORKDIR /var/www/html
 
-# Porta em que o Apache estará ouvindo
-EXPOSE 8000
+EXPOSE 9000
 
-# Comando para iniciar o servidor web (Apache)
-CMD ["apache2-foreground"]
+# Comando para iniciar o servidor web 
+ENTRYPOINT ["php-fpm"]

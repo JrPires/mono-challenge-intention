@@ -4,29 +4,62 @@ services:
     build:
       context: ./projeto-php
       dockerfile: Dockerfile.php
+    environment:
+      - PHP_SERVER_ADDRESS=php
+    ports:
+      - 9000:9000  
+    volumes:
+      - ./projeto-php/public:/var/www/html/public
+    networks:
+      - my-network  
 
   node:
     build:
       context: ./projeto-ts
       dockerfile: Dockerfile.node
+    ports:
+      - 8002:3000
+    networks:
+      - my-network  
+      
+  nginx:
+    build: 
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - 8001:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - php    
+    networks:
+      - my-network    
 
   postgres:
     image: postgres:15
     ports:
-      - 5433:5433
+      - 5432:5432
     volumes:
-      - ./path/to/postgres/data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=intencao_compra
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
-    # Resto da configuração do serviço PostgreSQL
+    networks:
+      - my-network    
 
   migrations:
     build:
       context: ./projeto-php
       dockerfile: Dockerfile.php
-    command: php bin/console doctrine:migrations:migrate
+    command: sh -c 'sleep 10 && php bin/console doctrine:migrations:migrate'
     depends_on:
       - postgres
+    networks:
+      - my-network  
+      
+networks:
+  my-network:
+    driver: bridge
 

@@ -1,7 +1,8 @@
-﻿### Intenção de Compra
+﻿## Intenção de Compra
 
+#### O Projeto foi desenvolvimento com Docker + PHP/Symfony + Node.js/Express.js + NGINX + Postgres 
 
-* Levante a aplicação, rodando o comando: docker-compose up -d, dentro da pasta mono-challenge-intention 
+* Levante a aplicação, rodando o comando: docker-compose up --build, dentro da pasta mono-challenge-intention 
 
 
 * Para exibir a lista dos produtos da Fake Store, utilize o endpoint através do método GET: http://localhost:8002/api/produtos

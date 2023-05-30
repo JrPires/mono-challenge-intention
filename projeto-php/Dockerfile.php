@@ -18,6 +18,8 @@ COPY . /var/www/html
 # Define o diretório de trabalho
 WORKDIR /var/www/html
 
+RUN composer install --no-interaction --no-plugins --no-scripts
+
 EXPOSE 9000
 
 # Comando para iniciar o servidor web 

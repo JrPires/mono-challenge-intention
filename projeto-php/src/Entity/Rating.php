@@ -19,9 +19,9 @@ class Rating
     #[ORM\Column(nullable: true)]
     private ?int $count = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rating_id')]
+    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'ratings')]
     #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id')]
-    private ?Product $rating_id = null;
+    private ?Product $product = null;
 
     public function getId(): ?int
     {
@@ -52,27 +52,19 @@ class Rating
         return $this;
     }
 
-    public function getProductId(): ?Product
+    /**
+     * @return Product|null
+     */
+    public function getProduct(): ?Product
     {
-        return $this->product_id;
+        return $this->product;
     }
 
-    public function setProductId(?Product $product_id): self
+    /**
+     * @param Product|null $product
+     */
+    public function setProduct(?Product $product): void
     {
-        $this->product_id = $product_id;
-
-        return $this;
-    }
-
-    public function getRatingId(): ?Product
-    {
-        return $this->rating_id;
-    }
-
-    public function setRatingId(?Product $rating_id): self
-    {
-        $this->rating_id = $rating_id;
-
-        return $this;
+        $this->product = $product;
     }
 }

@@ -12,7 +12,7 @@ class ClientService
      * @param Address $address
      * @return Client
      */
-    public function createClient(array $data, Address $address)
+    public function createClient(array $data, Address $address): Client
     {
         $client = new Client();
         $client->setNome($data['name']);

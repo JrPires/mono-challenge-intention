@@ -17,7 +17,7 @@ class RatingService
         $rating = new Rating();
         $rating->setRate($data['rating']['rate']);
         $rating->setCount($data['rating']['count']);
-        $rating->setProductId($product);
+        $rating->setProduct($product);
 
         return $rating;
     }

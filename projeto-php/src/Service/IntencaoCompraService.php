@@ -48,7 +48,7 @@ class IntencaoCompraService
     }
 
 
-    public function intencaoCompraService($data)
+    public function intencaoCompraService($data): void
     {
         $address = $this->addressService->createAddress($data);
         $product = $this->productService->createProduct($data);

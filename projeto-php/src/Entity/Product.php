@@ -30,7 +30,7 @@ class Product
     #[ORM\Column(length: 200)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'rating_id', targetEntity: Rating::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Rating::class)]
     private Collection $rating_id;
 
     public function __construct()
@@ -108,40 +108,18 @@ class Product
     }
 
     /**
-     * @return Collection
+     * @return ArrayCollection|Collection
      */
-    public function getRatingId(): Collection
+    public function getRatingId(): ArrayCollection|Collection
     {
         return $this->rating_id;
     }
 
     /**
-     * @param Collection $rating_id
+     * @param ArrayCollection|Collection $rating_id
      */
-    public function setRatingId(Collection $rating_id): void
+    public function setRatingId(ArrayCollection|Collection $rating_id): void
     {
         $this->rating_id = $rating_id;
-    }
-
-    public function addRatingId(Rating $ratingId): self
-    {
-        if (!$this->rating_id->contains($ratingId)) {
-            $this->rating_id->add($ratingId);
-            $ratingId->setRatingId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRatingId(Rating $ratingId): self
-    {
-        if ($this->rating_id->removeElement($ratingId)) {
-            // set the owning side to null (unless already changed)
-            if ($ratingId->getRatingId() === $this) {
-                $ratingId->setRatingId(null);
-            }
-        }
-
-        return $this;
     }
 }

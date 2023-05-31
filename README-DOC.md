@@ -23,4 +23,4 @@
     }
 
 
-* Para listar todos as intenções de compras que foram persistidas no banco, utilize o endpoint: http://localhost:8001/intencao/compra/lista
+* Para listar todos as intenções de compras que foram persistidas no banco, utilize o endpoint com o método GET: http://localhost:8001/intencao/compra/lista

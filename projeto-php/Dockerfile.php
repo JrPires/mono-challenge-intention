@@ -23,6 +23,8 @@ WORKDIR /var/www/html
 
 RUN composer install --no-interaction --no-plugins --no-scripts
 
+RUN composer dump-autoload
+
 EXPOSE 9000
 
 # Comando para iniciar o servidor web 

@@ -4,6 +4,8 @@ services:
     build:
       context: ./projeto-php
       dockerfile: Dockerfile.php
+    depends_on:
+      - postgres
     environment:
       - PHP_SERVER_ADDRESS=php
     ports:
@@ -47,18 +49,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
     networks:
-      - my-network    
+      - my-network
 
-  migrations:
-    build:
-      context: ./projeto-php
-      dockerfile: Dockerfile.php
-    command: sh -c 'sleep 10 && php bin/console doctrine:migrations:migrate'
-    depends_on:
-      - postgres
-    networks:
-      - my-network  
-      
 networks:
   my-network:
     driver: bridge

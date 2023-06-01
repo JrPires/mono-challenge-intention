@@ -27,5 +27,5 @@ RUN composer dump-autoload
 
 EXPOSE 9000
 
-# Comando para iniciar o servidor web 
-ENTRYPOINT ["php-fpm"]
+# Comando para iniciar o servidor web e as migrations
+CMD sh -c 'sleep 10 && php bin/console make:migration && php bin/console doctrine:migrations:migrate && php-fpm'
